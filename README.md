@@ -18,6 +18,8 @@ Colors
 | `error $string`      | display an error  |
 | `success $string`    | display a success |
 
+Just have a look at the script if you want to see all available colors.
+
 Animated loader
 ---
 This displays an animated loader that you can stop with `stop_loader` function.
