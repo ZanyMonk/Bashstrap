@@ -15,6 +15,7 @@ Colors
 | Function             | Description       |
 | -------------------- |------------------:|
 | `say $color $string` | `echo` with color |
+| `info $string`       | display an info   |
 | `error $string`      | display an error  |
 | `success $string`    | display a success |
 

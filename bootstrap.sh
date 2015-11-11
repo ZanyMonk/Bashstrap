@@ -29,8 +29,10 @@ ANIM=(— \\ \| / — \\ /)
 readonly ANIM
 readonly CHECK="✔"
 readonly CROSS="✗"
+readonly INFO="i"
 readonly ANIM_CHARSET="▗▘▝▖▝▖▙▚▛▜▞▟"
 
+LOG_TIME=false
 anim_pid=0
 
 #----
@@ -38,37 +40,34 @@ anim_pid=0
 #----
 
 #- say $color $string
-function say {
-	if [[ $# -eq 2  ]]; then
+say() {
+	if [[ $# -gt 1  ]]; then
 		echo -e "\e[${COLORS[$1]}m$2\e[39m"
 	else
 		echo $1
 	fi
 }
 
+#- update_time
+update_time() {
+	$LOG_TIME && T="[$(date +'%H:%M:%S')] - " || T=""
+}
+
 #- success $string
-function success {
-	say green "[$CHECK] $1"
+success() {
+	update_time
+	say green "[$CHECK] - $T$*"
 }
 
 #- error $string
-function error {
-	say red "[$CROSS] $1"
+error() {
+	update_time
+	say red "[$CROSS] - $T$*"
 }
 
-
-#----
-#- Tools
-#----
-
-#- in_array $needle $haystack
-in_array() {
-	declare -a array=("${2}")
-	for i in ${array[@]}; do
-		[[ $1 == "$i" ]] && return 0
-		echo $i
-	done
-	return 1
+info() {
+	update_time
+	say blue "[$INFO] - $T$*"
 }
 
 
